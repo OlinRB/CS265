@@ -1,4 +1,5 @@
 import socket
+import sys
 
 class Client:
     def __init__(self, HOST, PORT):
@@ -8,16 +9,14 @@ class Client:
         self.Init_Connection()
 
     def Init_Connection(self):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
-            # Connect to server and send data
-            self.sock.connect((self.HOST, self.PORT))
+        pass
+        self.s = socket.socket()
+        self.s.connect((self.HOST, self.PORT))
 
     def Send_Data(self, message):
+        self.s.sendall(bytes(message + "\n", "utf-8"))
+        self.received = str(self.s.recv(1024), "utf-8")
 
-        self.sock.sendall(bytes(message + "\n", "utf-8"))
+    def Close_Connection(self):
+        self.s.close()
 
-        # Receive data from the server and shut down
-        received = str(self.sock.recv(1024), "utf-8")
-
-        print("Sent:     {}".format(message))
-        print("Received: {}".format(received))

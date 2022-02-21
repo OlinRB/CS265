@@ -9,17 +9,19 @@ Handshake->Authentication->Request/Response
 Server IP: 132.198.11.12–
 
 """
-
-import socket
 from client import Client
-import sys
+
 
 HOST, PORT = "132.198.11.12", 12000
 data = "HELLO"
 
 client = Client(HOST, PORT)
 client.Send_Data(data)
+print(client.received)
 
+data = "AUTH:test1:p001"
+client.Send_Data(data)
+print(client.received)
 
 
 
