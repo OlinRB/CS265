@@ -14,7 +14,7 @@ import socket
 import sys
 
 HOST, PORT = "132.198.11.12", 12000
-data = "m".join(sys.argv[1:])
+data = "HELLO"
 
 print(data)
 
