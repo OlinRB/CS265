@@ -11,24 +11,14 @@ Server IP: 132.198.11.12–
 """
 
 import socket
+from client import Client
 import sys
 
 HOST, PORT = "132.198.11.12", 12000
 data = "HELLO"
 
-print(data)
-
-# Create a socket (SOCK_STREAM means a TCP socket)
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-    # Connect to server and send data
-    sock.connect((HOST, PORT))
-    sock.sendall(bytes("m" + "\n", "utf-8"))
-
-    # Receive data from the server and shut down
-    received = str(sock.recv(1024), "utf-8")
-
-print("Sent:     {}".format(data))
-print("Received: {}".format(received))
+client = Client(HOST, PORT)
+client.Send_Data(data)
 
 
 
