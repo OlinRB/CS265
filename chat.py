@@ -12,6 +12,7 @@ def main():
             if reader is client:
                 print(str(client.recv(1024), "utf-8"))
             else:
+                print(">", end=" ")
                 data = sys.stdin.readline()
                 client.send(data.encode("utf-8"))
 
