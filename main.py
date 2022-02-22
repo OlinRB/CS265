@@ -23,6 +23,7 @@ def connect():
     HOST, PORT = "132.198.11.12", 12000
     client = socket.socket()
     client.connect((HOST, PORT))
+    client.sendall(bytes("HELLO" + "\n", "utf-8"))
     print(str(client.recv(1024), "utf-8").strip())
     return client
 
@@ -30,9 +31,11 @@ def authenticate(client):
     un = input("Please enter your username: ")
     pwd = input("Please enter your password: ")
     un_pwd = "AUTH:{}:{}".format(un,pwd)
+    print("|" + un_pwd + "|")
     client.sendall(bytes(un_pwd + "\n", "utf-8"))
-    #print(str(client.s.recv(1024), "utf-8").strip())
-    if str(client.recv(1024), "utf-8").strip() == "AUTHYES":
+    response = str(client.recv(1024), "utf-8").strip()
+    print(response)
+    if response == "AUTHYES":
         return True
 
 
