@@ -21,24 +21,19 @@ def connect():
     # HOST = input("Please enter the server IPv4 address: ")
     # PORT = input("Please enter the port number: ")
     HOST, PORT = "132.198.11.12", 12000
-    # client = socket.socket()
-    # client.connect((HOST, PORT))
-    client = Client(HOST, PORT)
-    message = "HELLO"
-    client.Send_Data(message)
-    print(str(client.s.recv(1024), "utf-8").strip())
-    # client.sendall(bytes(message + "\n", "utf-8"))
-    # print(str(client.recv(1024), "utf-8").strip())
+    client = socket.socket()
+    client.connect((HOST, PORT))
+    print(str(client.recv(1024), "utf-8").strip())
     return client
 
 def authenticate(client):
     un = input("Please enter your username: ")
     pwd = input("Please enter your password: ")
     un_pwd = "AUTH:{}:{}".format(un,pwd)
-    client.s.sendall(bytes(un_pwd + "\n", "utf-8"))
+    client.sendall(bytes(un_pwd + "\n", "utf-8"))
     #print(str(client.s.recv(1024), "utf-8").strip())
-    if str(client.s.recv(1024), "utf-8").strip() == "AUTHYES":
-        client.authenticated = True
+    if str(client.recv(1024), "utf-8").strip() == "AUTHYES":
+        return True
 
 
 def menu_options():
@@ -60,22 +55,23 @@ def main():
 
 
     client = connect()
-
-    while not client.authenticated:
+    authenticated = authenticate(client)
+    while not authenticated:
         authenticate(client)
-    run = True
+
+    run = False
     while run:
         #menu_options()
-        readers, _, _ = select.select([client.s], [], [])
+        readers, _, _ = select.select([sys.stdin,client], [], [])
         for reader in readers:
             if reader is client:
-                print(client.s.recv(1000).decode("utf8"))
+                print(client.recv(1000).decode("utf8"))
             else:
-                i = sys.stdin.readline()
-                if i == "exit":
+                input = sys.stdin.readline()
+                if input == "exit":
                     run = False
                 else:
-                    client.Send_Data(i)
+                    client.sendall(bytes(input + "\n", "utf-8"))
 
 
 
