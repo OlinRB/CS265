@@ -7,9 +7,22 @@ def connect():
     HOST, PORT = "132.198.11.12", 12000
     connection.connect((HOST, PORT))
     return connection
+
+def authenticate(connection):
+    un = input("Please enter your username: ")
+    pwd = input("Please enter your password: ")
+    un_pwd = "AUTH:{}:{}".format(un, pwd)
+    connection.sendall(bytes(un_pwd + "\n", "utf-8"))
+    # print(str(client.s.recv(1024), "utf-8").strip())
+    if str(connection.recv(1024), "utf-8").strip() == "AUTHYES":
+        return True
 def main():
     connection = connect()
     print("Success")
+    authenticated = authenticate(connection)
+    while not authenticated:
+        authenticate(connection)
+
     while True:
 
         readers,_,_= select.select([sys.stdin,connection],[],[])
