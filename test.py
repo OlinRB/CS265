@@ -21,7 +21,7 @@ def main():
     print("Success")
     authenticated = authenticate(connection)
     while not authenticated:
-        authenticate(connection)
+        authenticated = authenticate(connection)
 
     while True:
 
