@@ -14,3 +14,5 @@ def main():
             else:
                 data = sys.stdin.readline()
                 client.send(data.encode("utf-8"))
+
+main()
