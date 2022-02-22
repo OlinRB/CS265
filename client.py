@@ -3,10 +3,12 @@ import sys
 
 class Client:
     def __init__(self, HOST, PORT):
-        self.state = "pending"
+        self.authenticated = False
+        self.initialized = False
         self.HOST = HOST
         self.PORT = PORT
         self.Init_Connection()
+        self.received = []
 
     def Init_Connection(self):
         pass
@@ -15,8 +17,17 @@ class Client:
 
     def Send_Data(self, message):
         self.s.sendall(bytes(message + "\n", "utf-8"))
-        self.received = str(self.s.recv(1024), "utf-8")
+        received = str(self.s.recv(1024), "utf-8").strip()
+        if self.received == "HELLO":
+            self.initialized = True
 
-    def Close_Connection(self):
+        if self.received == "AUTHYES":
+            self.authenticated = True
+            received = str(self.s.recv(1024), "utf-8").strip()
+
+    def Receive(self):
+        self.received = str(self.s.recv(1024), "utf-8").strip()
+
+    def __del__(self):
         self.s.close()
 
