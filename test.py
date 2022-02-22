@@ -2,10 +2,13 @@ import socket
 import sys
 import select
 
-connection = socket.socket()
-HOST, PORT = "132.198.11.12", 12000
-connection.connect((HOST, PORT))
+def connect():
+    connection = socket.socket()
+    HOST, PORT = "132.198.11.12", 12000
+    connection.connect((HOST, PORT))
+    return connection
 while True:
+    connection = connect()
     readers,_,_= select.select([sys.stdin,connection],[],[])
     for reader in readers:
         if reader is connection:
