@@ -25,14 +25,14 @@ class Client:
             credentials = "AUTH:{}:{}\n".format(u_name, pwd).encode("utf-8")
             #print("|" + credentials + "|")
             self.s.send(credentials)
-            print("|" + self.Read_Data() + "|")
-            if self.Read_Data() == "AUTHYES":
-                self.authenticated = True
+            self.Read_Data()
 
     def Read_Data(self):
         data = str(self.s.recv(1024), "utf-8")
+        if data == "AUTHYES":
+            self.authenticated = True
+            print("Login Successful")
         print(data)
-        return data
 
     def Send_Data(self):
         data = sys.stdin.readline().encode("utf-8")
