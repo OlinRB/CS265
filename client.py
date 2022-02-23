@@ -23,8 +23,9 @@ class Client:
             u_name = input("Username: ")
             pwd = input("Password: ")
             credentials = "AUTH:{}:{}\n".format(u_name, pwd).encode("utf-8")
-            print(credentials)
+            #print("|" + credentials + "|")
             self.s.send(credentials)
+            print("|" + self.Read_Data() + "|")
             if self.Read_Data() == "AUTHYES":
                 self.authenticated = True
 
