@@ -1,20 +1,19 @@
 import socket
 import sys
 import select
-from client import Client
-
-
 
 def main():
+    client = socket.socket()
     HOST, PORT = "132.198.11.12", 12000
-    client = Client(HOST, PORT)
+    client.connect((HOST, PORT))
     while True:
         readers, _, _ = select.select([sys.stdin, client], [], [])
         for reader in readers:
             if reader is client:
-                client.Print_Data()
+                print(str(client.recv(1024), "utf-8"))
                 print(">", end=" ")
             else:
-                client.Send_Data()
+                data = sys.stdin.readline()
+                client.send(data.encode("utf-8"))
 
 main()
