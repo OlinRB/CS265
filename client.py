@@ -29,7 +29,7 @@ class Client:
 
     def Read_Data(self):
         data = str(self.s.recv(1024), "utf-8")
-        if data == "AUTHYES":
+        if data.strip() == "AUTHYES":
             self.authenticated = True
             print("Login Successful")
         print(data)
