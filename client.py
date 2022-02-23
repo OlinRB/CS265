@@ -17,9 +17,20 @@ class Client:
         data = "HELLO\n".encode("utf-8")
         self.s.send(data)
 
+    def Authenticate(self):
+        print("Please enter your credentials")
+        while not self.authenticated:
+            u_name = input("Username: ")
+            pwd = input("Password: ")
+            credentials = "AUTH:{}:{}\n".format(u_name, pwd).encode("utf-8")
+            self.s.send(credentials)
+            if self.Read_Data() == "AUTHYES":
+                self.authenticated = True
+
     def Read_Data(self):
         data = str(self.s.recv(1024), "utf-8")
         print(data)
+        return data
 
     def Send_Data(self):
         data = sys.stdin.readline().encode("utf-8")

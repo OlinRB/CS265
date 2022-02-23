@@ -11,6 +11,7 @@ def main():
     HOST, PORT = "132.198.11.12", 12000
     client = Client(HOST, PORT)
     client.Init_Connection()
+    client.Authenticate()
     input = Input(client)
     connection = Loop()
     connection.Add_Reader(client)
