@@ -19,15 +19,14 @@ class Client:
 
     def Authenticate(self):
         print("Please enter your credentials")
-        while not self.authenticated:
-            u_name = input("Username: ")
-            pwd = input("Password: ")
-            credentials = "AUTH:{}:{}\n".format(u_name, pwd).encode("utf-8")
-            self.s.send(credentials)
-            response = str(self.s.recv(1024), "utf-8").strip()
-            print(response)
-            if response == "AUTHYES\n":
-                self.authenticated = True
+        u_name = input("Username: ")
+        pwd = input("Password: ")
+        credentials = "AUTH:{}:{}\n".format(u_name, pwd).encode("utf-8")
+        self.s.send(credentials)
+        response = str(self.s.recv(1024), "utf-8").strip()
+        print(response)
+        if response.rstrip() == "AUTHYES":
+            self.authenticated = True
 
     def Read_Data(self):
         data = str(self.s.recv(1024), "utf-8")

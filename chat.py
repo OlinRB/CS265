@@ -12,7 +12,8 @@ def main():
     client = Client(HOST, PORT)
     client.Init_Connection()
     input = Input(client)
-    client.Authenticate()
+    while not client.authenticated:
+        client.Authenticate()
     connection = Loop()
     connection.Add_Reader(client)
     connection.Add_Reader(input)
