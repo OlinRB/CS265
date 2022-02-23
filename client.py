@@ -14,7 +14,7 @@ class Client:
         return self.s.fileno()
 
     def Print_Data(self):
-        data = self.s.recv(1024), "utf-8"
+        data = str(self.s.recv(1024), "utf-8")
         print(data)
 
     def Send_Data(self):
