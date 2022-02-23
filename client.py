@@ -13,6 +13,10 @@ class Client:
     def fileno(self):
         return self.s.fileno()
 
+    def Init_Connection(self):
+        data = "HELLO\n".encode("utf-8")
+        self.s.send(data)
+
     def Read_Data(self):
         data = str(self.s.recv(1024), "utf-8")
         print(data)

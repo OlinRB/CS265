@@ -7,5 +7,6 @@ class Input():
     def fileno(self):
         return sys.stdin.fileno()
 
+
     def Read_Data(self):
         self.client.Send_Data()

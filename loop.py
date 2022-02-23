@@ -1,8 +1,9 @@
 import select
 
-class Socket_Connection():
+class Loop():
     def __init__(self):
         self.readers = []
+
 
     def Add_Reader(self, reader):
         self.readers.append(reader)
