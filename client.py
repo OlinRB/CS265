@@ -13,13 +13,15 @@ class Client:
     def fileno(self):
         return self.s.fileno()
 
-    def Print_Data(self):
+    def Read_Data(self):
         data = str(self.s.recv(1024), "utf-8")
         print(data)
 
     def Send_Data(self):
         data = sys.stdin.readline().encode("utf-8")
         self.s.send(data)
+
+
     def __del__(self):
         self.s.close()
 

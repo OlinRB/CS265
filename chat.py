@@ -2,19 +2,18 @@ import socket
 import sys
 import select
 from client import Client
-
+from socket_connection import Socket_Connection
+from input import Input
 
 
 def main():
     HOST, PORT = "132.198.11.12", 12000
     client = Client(HOST, PORT)
-    while True:
-        readers, _, _ = select.select([sys.stdin, client], [], [])
-        for reader in readers:
-            if reader is client:
-                client.Print_Data()
-                print(">", end=" ")
-            else:
-                client.Send_Data()
+    input = Input(client)
+    connection = Socket_Connection()
+    connection.Add_Reader(client)
+    connection.Add_Reader(input)
+    connection.Run()
+
 
 main()
