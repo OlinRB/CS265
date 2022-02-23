@@ -10,8 +10,8 @@ class Client:
         self.s = socket.socket()
         self.s.connect((self.HOST, self.PORT))
 
-    def Fileno(self):
-        return self.s.Fileno()
+    def fileno(self):
+        return self.s.fileno()
 
     def Print_Data(self):
         data = self.s.recv(1024), "utf-8"
