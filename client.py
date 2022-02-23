@@ -23,15 +23,18 @@ class Client:
             u_name = input("Username: ")
             pwd = input("Password: ")
             credentials = "AUTH:{}:{}\n".format(u_name, pwd).encode("utf-8")
-            #print("|" + credentials + "|")
+            print("|" + credentials.decode("utf-8") + "|")
             self.s.send(credentials)
-            self.Read_Data()
+            if str(self.s.recv(1024), "utf-8") == "AUTHYES":
+                self.authenticated = True
 
     def Read_Data(self):
         data = str(self.s.recv(1024), "utf-8")
-        if data.strip() == "AUTHYES":
-            self.authenticated = True
-            print("Login Successful")
+        # print("|" + data + "|")
+        # print(data == "AUTHYES")
+        # if data.strip() == "AUTHYES":
+        #     self.authenticated = True
+        #     print("Login Successful")
         print(data)
 
     def Send_Data(self):
