@@ -27,7 +27,7 @@ class Client:
             self.s.send(credentials)
             response = str(self.s.recv(1024), "utf-8").strip()
             print(response == "AUTHYES")
-            if response == "AUTHYES":
+            if response == "AUTHYES\n":
                 self.authenticated = True
 
     def Read_Data(self):
