@@ -17,7 +17,7 @@ def main():
     connection = Loop()
     connection.Add_Reader(client)
     connection.Add_Reader(input)
-    connection.Run()
+    # connection.Run()
 
 
 main()

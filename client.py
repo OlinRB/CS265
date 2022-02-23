@@ -16,6 +16,7 @@ class Client:
     def Init_Connection(self):
         data = "HELLO\n".encode("utf-8")
         self.s.send(data)
+        self.Read_Data()
 
     def Authenticate(self):
         print("Please enter your credentials")
@@ -23,19 +24,13 @@ class Client:
         pwd = input("Password: ")
         credentials = "AUTH:{}:{}\n".format(u_name, pwd).encode("utf-8")
         self.s.send(credentials)
-        response = str(self.s.recv(1024), "utf-8").strip()
-        print(response)
-        if response.rstrip() == "AUTHYES":
-            self.authenticated = True
+        self.Read_Data()
 
     def Read_Data(self):
-        data = str(self.s.recv(1024), "utf-8")
-        # print("|" + data + "|")
-        # print(data == "AUTHYES")
-        # if data.strip() == "AUTHYES":
-        #     self.authenticated = True
-        #     print("Login Successful")
-        print(data)
+        response = str(self.s.recv(1024), "utf-8")
+        if response.rstrip() == "AUTHYES":
+            self.authenticated = True
+        print(response)
 
     def Send_Data(self):
         data = sys.stdin.readline().encode("utf-8")
