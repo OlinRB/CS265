@@ -52,8 +52,10 @@ class Client:
         elif response[:8] == "SIGNOFF:":
             print("\nUser sign off: {}".format(response[8:]))
         elif "," in response:
-            print("Users online:")
-            print(response)
+            print("\nUsers online:")
+            users = response.split(",")
+            for user in users:
+                print(user)
         else:
             print(response)
 
@@ -61,8 +63,6 @@ class Client:
 
         data = sys.stdin.readline()
         if data == "1\n":
-            print("Users online:")
-            print("I am inside")
             data = "LIST\n".encode("utf-8")
         elif data == "2\n":
             to = input("\nMessage recipient: ")
