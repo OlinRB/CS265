@@ -59,11 +59,13 @@ class Client:
 
 
         data = sys.stdin.readline()
+        print(type(data))
         if data == "1":
             data = "LIST\n".encode("utf-8")
         else:
             data = data.encode("utf-8")
-
+        if self.initialized and self.authenticated:
+            exit()
         self.s.send(data)
 
 
