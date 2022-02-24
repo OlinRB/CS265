@@ -10,15 +10,19 @@ from input import Input
 def main():
     HOST, PORT = "132.198.11.12", 12000
     client = Client(HOST, PORT)
+    client.Init_Connection()
+
     while not client.initialized:
         client.Init_Connection()
-    input = Input(client)
+        client.Read_Data()
     while not client.authenticated:
         client.Authenticate()
+
+    input = Input(client)
     connection = Loop()
     connection.Add_Reader(client)
     connection.Add_Reader(input)
-    #connection.Run()
+    connection.Run()
 
 
 main()
