@@ -9,7 +9,7 @@ class Loop():
         self.readers.append(reader)
 
     def Menu(self):
-        print("Please choose an option:")
+        print("\nPlease choose an option:")
         print("1) List online users")
         print("2) Send a message")
         print("3) Sign off")

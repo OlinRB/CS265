@@ -55,7 +55,7 @@ class Client:
             print("\nUsers online:")
             users = response.split(",")
             for user in users:
-                print(user)
+                print(user.replace(" ", ""))
         else:
             print(response)
 
