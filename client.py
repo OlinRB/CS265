@@ -62,8 +62,16 @@ class Client:
         # print(type(data))
         # print("|" + data + "|")
         if data == "1\n":
+            print("Users online:")
             data = "LIST\n".encode("utf-8")
-            print("inside")
+        elif data == "2\n":
+            to = input("Message recipient: ")
+            msg = input("Message content: ")
+            data = "To:{}{}".format(to, msg)
+            data = (data + "\n").encode("utf-8")
+            print(data)
+        elif data == "3\n":
+            data = "BYE\n".encode("utf-8")
         else:
             data = data.encode("utf-8")
         # if self.initialized and self.authenticated:
