@@ -50,7 +50,6 @@ class Client:
             message = message.split(":")
             print("Message from: {}".format(message[0]))
             print("Content: {}".format(message[1]))
-            print("---Message sent---")
         elif response[:8] == "SIGNOFF:":
             print("User sign off: {}".format(response[8:]))
         elif "," in response or response.islower():
@@ -68,6 +67,7 @@ class Client:
         elif data == "2\n":
             to = input("Message recipient: ")
             msg = input("Message content: ")
+            print("----Message sent----")
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
         elif data == "3\n":
