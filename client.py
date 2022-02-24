@@ -30,7 +30,7 @@ class Client:
 
     def Read_Data(self):
         response = str(self.s.recv(1024), "utf-8")
-        if response.rstrip() == "HELLO":
+        if response.rstrip() == "HELLO" and not self.initialized:
             self.initialized = True
             print("Connection Initialized")
         elif response.rstrip() == "AUTHYES":

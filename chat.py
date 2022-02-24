@@ -10,7 +10,7 @@ from input import Input
 def main():
     HOST, PORT = "132.198.11.12", 12000
     client = Client(HOST, PORT)
-    client.Init_Connection()
+    #client.Init_Connection()
     while not client.authenticated:
         client.Authenticate()
     input = Input(client)
