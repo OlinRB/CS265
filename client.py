@@ -9,6 +9,7 @@ class Client:
         self.PORT = PORT
         self.s = socket.socket()
         self.s.connect((self.HOST, self.PORT))
+        self.Init_Connection()
 
     def fileno(self):
         return self.s.fileno()
@@ -41,6 +42,10 @@ class Client:
 
 
     def Send_Data(self):
+        print("Please choose an option:")
+        print("1) List online users")
+        print("2) Send a message")
+        print("3) Sign off")
         data = sys.stdin.readline().encode("utf-8")
         self.s.send(data)
 
