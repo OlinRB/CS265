@@ -69,7 +69,6 @@ class Client:
             msg = input("Message content: ")
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
-            print(data)
         elif data == "3\n":
             data = "BYE\n".encode("utf-8")
         else:

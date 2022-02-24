@@ -3,7 +3,7 @@ import sys
 import select
 
 def main():
-    oop = False
+    oop = True
     if oop:
         client = socket.socket()
         HOST, PORT = "132.198.11.12", 12000
