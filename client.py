@@ -17,6 +17,7 @@ class Client:
     def Init_Connection(self):
         data = "HELLO\n".encode("utf-8")
         self.s.send(data)
+        self.Read_Data()
 
 
     def Authenticate(self):
