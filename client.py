@@ -59,6 +59,7 @@ class Client:
         data = sys.stdin.readline()
         if data == "1\n":
             print("Users online:")
+            print("I am inside")
             data = "LIST\n".encode("utf-8")
         elif data == "2\n":
             to = input("\nMessage recipient: ")
