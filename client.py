@@ -54,6 +54,11 @@ class Client:
         else:
             print(response)
 
+    def Close_Connection(self):
+        data = "BYE\n".encode("utf-8")
+        self.s.send(data)
+        self.Read_Data()
+        self.s.close()
 
     def Send_Data(self, input_data):
 
@@ -70,7 +75,7 @@ class Client:
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
         elif data == "3\n":
-            data = "BYE\n".encode("utf-8")
+            self.Close_Connection()
         else:
             data = data.encode("utf-8")
         # if self.initialized and self.authenticated:
