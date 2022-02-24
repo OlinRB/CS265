@@ -43,7 +43,7 @@ class Client:
             print("Invalid Credentials")
         elif response == "UNIQNO":
             print("Error: Server can only accept single connection from client")
-        elif response == "1":
+        elif response == 1:
             self.Init_Connection()
         elif response == "2":
             pass
