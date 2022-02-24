@@ -51,7 +51,7 @@ class Client:
             print("Content: {}".format(message[1]))
         elif response[:8] == "SIGNOFF:":
             print("\nUser sign off: {}".format(response[8:]))
-        elif "," in response:
+        elif "," in response or response.islower():
             print("\nUsers online:")
             users = response.split(",")
             for user in users:
@@ -70,6 +70,7 @@ class Client:
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
         elif data == "3\n":
+            print("Logging off...")
             self.Close_Connection()
         else:
             data = data.encode("utf-8")
