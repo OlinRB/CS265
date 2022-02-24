@@ -54,11 +54,9 @@ class Client:
         else:
             print(response)
 
-    def Send_Data(self, input_data):
+    def Send_Data(self):
 
         data = sys.stdin.readline()
-        # print(type(data))
-        # print("|" + data + "|")
         if data == "1\n":
             print("Users online:")
             data = "LIST\n".encode("utf-8")

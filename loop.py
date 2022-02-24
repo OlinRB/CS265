@@ -13,7 +13,7 @@ class Loop():
         print("1) List online users")
         print("2) Send a message")
         print("3) Sign off")
-        print(">")
+        print(">", end=" ")
     def Run(self):
         self.Menu()
         while True:

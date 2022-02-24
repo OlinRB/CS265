@@ -10,4 +10,4 @@ class Input():
 
     def Read_Data(self):
         print("\n")
-        self.client.Send_Data(None)
+        self.client.Send_Data()
