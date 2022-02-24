@@ -55,13 +55,12 @@ class Client:
             print(response)
 
     def Close_Connection(self):
-        data = "BYE\n".encode("utf-8")
-        self.s.send(data)
+        # data = "BYE\n".encode("utf-8")
+        # self.s.send(data)
         self.Read_Data()
         self.s.close()
 
     def Send_Data(self, input_data):
-
 
         data = sys.stdin.readline()
         # print(type(data))
