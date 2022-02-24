@@ -18,6 +18,7 @@ class Client:
         self.s.send(data)
         self.Read_Data()
 
+
     def Authenticate(self):
         print("Please enter your credentials")
         u_name = input("Username: ")
@@ -30,7 +31,14 @@ class Client:
         response = str(self.s.recv(1024), "utf-8")
         if response.rstrip() == "AUTHYES":
             self.authenticated = True
-        print(response)
+            print("Login Successful")
+        elif response.rstrip() == "AUTHNO":
+            print("Invalid Credentials")
+        elif response.rstrip() == "UNIQNO":
+            print("Error: Server can only accept single connection from client")
+        else:
+            print(response)
+
 
     def Send_Data(self):
         data = sys.stdin.readline().encode("utf-8")
