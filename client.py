@@ -65,7 +65,7 @@ class Client:
         if data == "1\n":
             data = "LIST\n".encode("utf-8")
         elif data == "2\n":
-            to = input("\nMessage recipient: ")
+            to = input("Message recipient: ")
             msg = input("Message content: ")
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
