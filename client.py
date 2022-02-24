@@ -64,7 +64,8 @@ class Client:
                 print(user.replace(" ", ""))
         else:
             pass
-        self.Menu()
+        if self.initialized and self.authenticated:
+            self.Menu()
 
     def Send_Data(self):
 
