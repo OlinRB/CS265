@@ -61,8 +61,9 @@ class Client:
         data = sys.stdin.readline()
         print(type(data))
         print("|" + data + "|")
-        if data == "1":
+        if data == "1\n":
             data = "LIST\n".encode("utf-8")
+            print("inside")
         else:
             data = data.encode("utf-8")
         if self.initialized and self.authenticated:
