@@ -44,18 +44,20 @@ class Client:
         elif response == "UNIQNO":
             print("Error: Server can only accept single connection from client")
         elif response == "1":
-            self.Send_Data("LIST\n".encode("utf-8"))
+            pass
+        elif response == "2":
+            pass
+        elif response == "3":
+            pass
         elif response[:8] == "SIGNOFF:":
             print("User sign off: {}".format(response[8:]))
         else:
             print(response)
 
 
-    def Send_Data(self, data_in):
-        if data_in is None:
-            data = sys.stdin.readline().encode("utf-8")
-        else:
-            data = data_in
+    def Send_Data(self):
+
+        data = sys.stdin.readline().encode("utf-8")
         self.s.send(data)
 
 
