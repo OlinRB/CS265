@@ -9,7 +9,6 @@ class Client:
         self.PORT = PORT
         self.s = socket.socket()
         self.s.connect((self.HOST, self.PORT))
-        self.Init_Connection()
 
     def fileno(self):
         return self.s.fileno()
@@ -17,7 +16,6 @@ class Client:
     def Init_Connection(self):
         data = "HELLO\n".encode("utf-8")
         self.s.send(data)
-        self.Read_Data()
 
 
     def Authenticate(self):
@@ -30,7 +28,10 @@ class Client:
 
     def Read_Data(self):
         response = str(self.s.recv(1024), "utf-8")
-        if response.rstrip() == "AUTHYES":
+        if response.rstrip() == "HELLO":
+            self.initialized = True
+            print("Connection Initialized")
+        elif response.rstrip() == "AUTHYES":
             self.authenticated = True
             print("Login Successful")
         elif response.rstrip() == "AUTHNO":
