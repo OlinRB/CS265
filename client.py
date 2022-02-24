@@ -9,6 +9,7 @@ class Client:
         self.PORT = PORT
         self.s = socket.socket()
         self.s.connect((self.HOST, self.PORT))
+        self.Init_Connection()
 
     def fileno(self):
         return self.s.fileno()
