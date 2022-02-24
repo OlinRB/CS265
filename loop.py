@@ -17,7 +17,7 @@ class Loop():
         while True:
             readers, _, _ = select.select(self.readers, [], [])
             for reader in readers:
-                reader.Read_Data()
+                reader.Read_Data(None)
                 print("Please choose an option:")
                 print("1) List online users")
                 print("2) Send a message")

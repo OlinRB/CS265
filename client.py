@@ -43,6 +43,8 @@ class Client:
             print("Invalid Credentials")
         elif response == "UNIQNO":
             print("Error: Server can only accept single connection from client")
+        elif response == "1":
+            self.Send_Data("LIST\n".encode("utf-8"))
         elif response[:8] == "SIGNOFF:":
             print("User sign off: {}".format(response[8:]))
         else:
