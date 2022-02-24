@@ -54,12 +54,14 @@ class Client:
         elif response[:5] == "From:":
             message = response[5:]
             message = message.split(":")
-            print("-------------")
+            print("--------------------------")
             print("Message from: {}".format(message[0]))
             print("Content: {}".format(message[1]))
-            print("-------------")
+            print("--------------------------")
         elif response[:8] == "SIGNOFF:":
+            print("--------------------------")
             print("User sign off: {}".format(response[8:]))
+            print("--------------------------")
         elif "," in response or response.islower():
             print("-------------")
             print("Users online:")
