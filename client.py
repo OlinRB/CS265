@@ -5,6 +5,7 @@ class Client:
     def __init__(self, HOST, PORT):
         self.authenticated = False
         self.initialized = False
+        self.closed = False
         self.run = True
         self.HOST = HOST
         self.PORT = PORT
@@ -64,7 +65,7 @@ class Client:
                 print(user.replace(" ", ""))
         else:
             pass
-        if self.initialized and self.authenticated:
+        if self.initialized and self.authenticated and not self.closed:
             self.Menu()
 
     def Send_Data(self):
@@ -91,6 +92,7 @@ class Client:
         self.s.send(data)
         self.Read_Data()
         self.s.close()
+        self.closed = True
         exit()
 
     def __del__(self):
