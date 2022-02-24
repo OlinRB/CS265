@@ -44,7 +44,7 @@ class Client:
         elif response == "UNIQNO":
             print("Error: Server can only accept single connection from client")
         elif response == 1:
-            self.Init_Connection()
+            pass
         elif response == "2":
             pass
         elif response == "3":
@@ -57,10 +57,13 @@ class Client:
 
     def Send_Data(self, input_data):
 
-        if not input_data is None:
-            data = input_data
+
+        data = sys.stdin.readline()
+        if data == "1":
+            data = "LIST\n".encode("utf-8")
         else:
-            data = sys.stdin.readline().encode("utf-8")
+            data = data.encode("utf-8")
+
         self.s.send(data)
 
 
