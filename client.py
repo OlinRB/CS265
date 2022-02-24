@@ -34,7 +34,7 @@ class Client:
             self.initialized = True
             print("Connection Initialized")
         elif response.rstrip()[:7] == "SIGNIN:":
-            print("Signed in user {}".format(response.rstrip()[7:]))
+            print("User sign in:  {}".format(response.rstrip()[7:]))
         elif response.rstrip() == "AUTHYES":
             self.authenticated = True
             print("Login Successful")
@@ -47,10 +47,6 @@ class Client:
 
 
     def Send_Data(self):
-        print("Please choose an option:")
-        print("1) List online users")
-        print("2) Send a message")
-        print("3) Sign off")
         data = sys.stdin.readline().encode("utf-8")
         self.s.send(data)
 
