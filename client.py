@@ -30,18 +30,21 @@ class Client:
 
     def Read_Data(self):
         response = str(self.s.recv(1024), "utf-8")
-        if response.rstrip() == "HELLO" and not self.initialized:
+        response = response.rstrip()
+        if response == "HELLO" and not self.initialized:
             self.initialized = True
             print("Connection Initialized")
-        elif response.rstrip()[:7] == "SIGNIN:":
+        elif response[:7] == "SIGNIN:":
             print("User sign in:  {}".format(response.rstrip()[7:]))
-        elif response.rstrip() == "AUTHYES":
+        elif response == "AUTHYES":
             self.authenticated = True
             print("Login Successful")
-        elif response.rstrip() == "AUTHNO":
+        elif response == "AUTHNO":
             print("Invalid Credentials")
-        elif response.rstrip() == "UNIQNO":
+        elif response == "UNIQNO":
             print("Error: Server can only accept single connection from client")
+        elif response[:8] == "SIGNOFF:":
+            print("User sign off: {}".format(response[8:]))
         else:
             print(response)
 
