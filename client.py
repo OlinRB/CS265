@@ -22,13 +22,6 @@ class Client:
         self.s.send(data)
         self.Read_Data()
 
-    def Menu(self):
-        print("\nPlease choose an option:")
-        print("1) List online users")
-        print("2) Send a message")
-        print("3) Sign off")
-
-
     def Authenticate(self):
         print("Please enter your credentials")
         u_name = input("Username: ")
@@ -67,8 +60,6 @@ class Client:
                 print(user.replace(" ", ""))
         else:
             pass
-        if self.initialized and self.authenticated and not self.closed:
-            self.Menu()
 
     def Send_Data(self):
         data = sys.stdin.readline()
