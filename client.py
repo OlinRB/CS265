@@ -77,20 +77,25 @@ class Client:
 
     def Send_Data(self):
         data = sys.stdin.readline()
+        good_input = False
         if data == "1\n":
+            good_input = True
             data = "LIST\n".encode("utf-8")
         elif data == "2\n":
+            good_input = True
             to = input("Message recipient: ")
             msg = input("Message content: ")
             print("-----Message sent-----")
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
         elif data == "3\n":
+            good_input = True
             print("Logging off...")
             self.Close_Connection()
         else:
             data = data.encode("utf-8")
-        self.s.send(data)
+        if good_input:
+            self.s.send(data)
 
     def Close_Connection(self):
         data = "BYE\n".encode("utf-8")
