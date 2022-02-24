@@ -33,6 +33,8 @@ class Client:
         if response.rstrip() == "HELLO" and not self.initialized:
             self.initialized = True
             print("Connection Initialized")
+        elif response.rstrip()[:7] == "SIGNIN:":
+            print("Signed in user {}".format(response.rstrip()[7:]))
         elif response.rstrip() == "AUTHYES":
             self.authenticated = True
             print("Login Successful")
