@@ -82,7 +82,7 @@ class Client:
         elif data == "2\n":
             to = input("Message recipient: ")
             msg = input("Message content: ")
-            print("----Message sent----")
+            print("-----Message sent-----")
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
         elif data == "3\n":

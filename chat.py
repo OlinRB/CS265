@@ -10,12 +10,13 @@ connection to specified server.
 
 """
 
-
-
 def main():
-    HOST, PORT = "132.198.11.12", 12000
     HOST = input("Please enter the server address: ")
-    PORT = int(input("PLEASE enter the server port: "))
+    PORT = input("Please enter the server port: ")
+    if not PORT.isalnum():
+        print("Error: invalid port number")
+        print("Closing...")
+    PORT = int(PORT)
     client = Client(HOST, PORT)
     while not client.authenticated:
         client.Authenticate()
