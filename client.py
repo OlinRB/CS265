@@ -49,12 +49,11 @@ class Client:
             print(response)
 
 
-    def Send_Data(self):
-        print("Please choose an option:")
-        print("1) List online users")
-        print("2) Send a message")
-        print("3) Sign off")
-        data = sys.stdin.readline().encode("utf-8")
+    def Send_Data(self, data_in):
+        if data_in is None:
+            data = sys.stdin.readline().encode("utf-8")
+        else:
+            data = data_in
         self.s.send(data)
 
 
