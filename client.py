@@ -57,7 +57,7 @@ class Client:
             for user in users:
                 print(user.replace(" ", ""))
         else:
-            print(response)
+            pass
 
     def Send_Data(self):
 
