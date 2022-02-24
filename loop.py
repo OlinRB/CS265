@@ -1,5 +1,13 @@
 import select
 
+"""
+Main Loop class for chat.py
+
+Adds readers client and u_input 
+listening for either server response
+or user input
+"""
+
 class Loop():
     def __init__(self):
         self.readers = []

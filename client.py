@@ -1,6 +1,12 @@
 import socket
 import sys
 
+"""
+Client class drives functionality of chat.py 
+creating a connection to the server and 
+holding decision structures to read/write 
+data.
+"""
 
 class Client:
     def __init__(self, HOST, PORT):
