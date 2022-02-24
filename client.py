@@ -1,6 +1,7 @@
 import socket
 import sys
 
+
 class Client:
     def __init__(self, HOST, PORT):
         self.authenticated = False
@@ -43,23 +44,24 @@ class Client:
             self.initialized = True
             print("Connection Initialized")
         elif response[:7] == "SIGNIN:":
-            print("\nUser sign in:  {}".format(response.rstrip()[7:]))
+            print("User login:  {}".format(response.rstrip()[7:]))
         elif response == "AUTHYES":
             self.authenticated = True
-            print("\nLogin Successful")
+            print("Login Successful")
         elif response == "AUTHNO":
-            print("\nInvalid Credentials")
+            print("Invalid Credentials")
         elif response == "UNIQNO":
-            print("\nError: Server can only accept single connection from client")
+            print("Error: Server can only accept single connection from client")
         elif response[:5] == "From:":
             message = response[5:]
             message = message.split(":")
-            print("\nMessage from: {}".format(message[0]))
+            print("Message from: {}".format(message[0]))
             print("Content: {}".format(message[1]))
+            print("---Message sent---")
         elif response[:8] == "SIGNOFF:":
-            print("\nUser sign off: {}".format(response[8:]))
+            print("User sign off: {}".format(response[8:]))
         elif "," in response or response.islower():
-            print("\nUsers online:")
+            print("Users online:")
             users = response.split(",")
             for user in users:
                 print(user.replace(" ", ""))
@@ -69,7 +71,6 @@ class Client:
             self.Menu()
 
     def Send_Data(self):
-
         data = sys.stdin.readline()
         if data == "1\n":
             data = "LIST\n".encode("utf-8")
@@ -83,8 +84,6 @@ class Client:
             self.Close_Connection()
         else:
             data = data.encode("utf-8")
-        # if self.initialized and self.authenticated:
-        #     exit()
         self.s.send(data)
 
     def Close_Connection(self):
