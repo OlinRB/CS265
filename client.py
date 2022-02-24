@@ -51,6 +51,9 @@ class Client:
             print("Content: {}".format(message[1]))
         elif response[:8] == "SIGNOFF:":
             print("\nUser sign off: {}".format(response[8:]))
+        elif "," in response:
+            print("Users online:")
+            print(response)
         else:
             print(response)
 
