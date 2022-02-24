@@ -17,7 +17,6 @@ class Loop():
         while True:
             readers, _, _ = select.select(self.readers, [], [])
             for reader in readers:
-                print(type(reader))
                 reader.Read_Data()
 
 

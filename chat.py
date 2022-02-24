@@ -3,7 +3,7 @@ import sys
 import select
 from client import Client
 from loop import Loop
-from input import Input
+from u_input import Input
 
 
 
