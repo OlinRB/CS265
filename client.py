@@ -53,12 +53,15 @@ class Client:
         elif response[:8] == "SIGNOFF:":
             print("User sign off: {}".format(response[8:]))
         elif "," in response or response.islower():
+            print("-------------")
             print("Users online:")
             users = response.split(",")
             for user in users:
                 print(user.replace(" ", ""))
+            print("-------------")
         else:
             pass
+        print("\n")
 
     def Send_Data(self):
         data = sys.stdin.readline()
