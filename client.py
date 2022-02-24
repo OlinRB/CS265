@@ -43,7 +43,9 @@ class Client:
             self.initialized = True
             print("\nConnection Initialized")
         elif response[:7] == "SIGNIN:":
+            print("-------------------")
             print("User login:  {}".format(response.rstrip()[7:]))
+            print("-------------------")
         elif response == "AUTHYES":
             self.authenticated = True
             print("Login Successful")
@@ -54,14 +56,14 @@ class Client:
         elif response[:5] == "From:":
             message = response[5:]
             message = message.split(":")
-            print("--------------------------")
+            print("---------------------")
             print("Message from: {}".format(message[0]))
             print("Content: {}".format(message[1]))
-            print("--------------------------")
+            print("---------------------")
         elif response[:8] == "SIGNOFF:":
-            print("--------------------------")
+            print("-------------------")
             print("User sign off: {}".format(response[8:]))
-            print("--------------------------")
+            print("-------------------")
         elif "," in response or response.islower():
             print("-------------")
             print("Users online:")
