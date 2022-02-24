@@ -5,6 +5,7 @@ class Client:
     def __init__(self, HOST, PORT):
         self.authenticated = False
         self.initialized = False
+        self.run = True
         self.HOST = HOST
         self.PORT = PORT
         self.s = socket.socket()
@@ -43,22 +44,15 @@ class Client:
             print("Invalid Credentials")
         elif response == "UNIQNO":
             print("Error: Server can only accept single connection from client")
-        elif response == 1:
-            pass
-        elif response == "2":
-            pass
-        elif response == "3":
-            pass
+        elif response[:5] == "From:":
+            message = response[5:]
+            message = message.split(":")
+            print("From: {}".format(message[0]))
+            print("Message: {}".format(message[1]))
         elif response[:8] == "SIGNOFF:":
             print("User sign off: {}".format(response[8:]))
         else:
             print(response)
-
-    def Close_Connection(self):
-        # data = "BYE\n".encode("utf-8")
-        # self.s.send(data)
-        self.Read_Data()
-        self.s.close()
 
     def Send_Data(self, input_data):
 
@@ -81,6 +75,11 @@ class Client:
         #     exit()
         self.s.send(data)
 
+    def Close_Connection(self):
+        data = "BYE\n".encode("utf-8")
+        self.s.send(data)
+        self.Read_Data()
+        exit()
 
     def __del__(self):
         self.s.close()
