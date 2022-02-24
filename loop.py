@@ -14,8 +14,10 @@ class Loop():
         print("2) Send a message")
         print("3) Sign off")
     def Run(self):
+        self.Menu()
         while True:
             readers, _, _ = select.select(self.readers, [], [])
             for reader in readers:
                 reader.Read_Data()
+                self.Menu()
 

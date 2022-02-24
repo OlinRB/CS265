@@ -36,21 +36,21 @@ class Client:
             self.initialized = True
             print("Connection Initialized")
         elif response[:7] == "SIGNIN:":
-            print("User sign in:  {}".format(response.rstrip()[7:]))
+            print("\nUser sign in:  {}".format(response.rstrip()[7:]))
         elif response == "AUTHYES":
             self.authenticated = True
-            print("Login Successful")
+            print("\nLogin Successful")
         elif response == "AUTHNO":
-            print("Invalid Credentials")
+            print("\nInvalid Credentials")
         elif response == "UNIQNO":
-            print("Error: Server can only accept single connection from client")
+            print("\nError: Server can only accept single connection from client")
         elif response[:5] == "From:":
             message = response[5:]
             message = message.split(":")
-            print("From: {}".format(message[0]))
-            print("Message: {}".format(message[1]))
+            print("\nMessage from: {}".format(message[0]))
+            print("Content: {}".format(message[1]))
         elif response[:8] == "SIGNOFF:":
-            print("User sign off: {}".format(response[8:]))
+            print("\nUser sign off: {}".format(response[8:]))
         else:
             print(response)
 
@@ -63,7 +63,7 @@ class Client:
             print("Users online:")
             data = "LIST\n".encode("utf-8")
         elif data == "2\n":
-            to = input("Message recipient: ")
+            to = input("\nMessage recipient: ")
             msg = input("Message content: ")
             data = "To:{}:{}".format(to, msg)
             data = (data + "\n").encode("utf-8")
@@ -79,6 +79,7 @@ class Client:
         data = "BYE\n".encode("utf-8")
         self.s.send(data)
         self.Read_Data()
+        self.s.close()
         exit()
 
     def __del__(self):
