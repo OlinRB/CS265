@@ -58,9 +58,9 @@ class Client:
     def Send_Data(self, input_data):
 
         if not input_data is None:
-            data = sys.stdin.readline().encode("utf-8")
-        else:
             data = input_data
+        else:
+            data = sys.stdin.readline().encode("utf-8")
         self.s.send(data)
 
 
