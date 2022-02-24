@@ -60,6 +60,7 @@ class Client:
 
         data = sys.stdin.readline()
         print(type(data))
+        print("|" + data + "|")
         if data == "1":
             data = "LIST\n".encode("utf-8")
         else:
