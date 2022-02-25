@@ -6,6 +6,7 @@ input function to user input using
 stdin
 """
 
+
 class Input():
     def __init__(self, client):
         self.client = client

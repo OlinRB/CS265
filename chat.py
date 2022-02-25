@@ -11,19 +11,26 @@ connection to specified server.
 """
 
 def main():
+    # Get host and port number from user
     HOST = input("Please enter the server address: ")
     PORT = input("Please enter the server port: ")
-    if not PORT.isalnum():
+    while not PORT.isalnum():
         print("Error: invalid port number")
-        print("Closing...")
+        PORT = input("Please enter the server port: ")
     PORT = int(PORT)
+    # Initialize connection
     client = Client(HOST, PORT)
+    # Authenticate user
     while not client.authenticated:
         client.Authenticate()
+    # Initialize input reader
     u_input = Input(client)
+    # Initialize loop
     connection = Loop()
+    # Add connection and input reader to loop
     connection.Add_Reader(client)
     connection.Add_Reader(u_input)
+    # Run loop
     connection.Run()
 
 

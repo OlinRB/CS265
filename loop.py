@@ -8,10 +8,10 @@ listening for either server response
 or user input
 """
 
+
 class Loop():
     def __init__(self):
         self.readers = []
-
 
     def Add_Reader(self, reader):
         self.readers.append(reader)
@@ -21,6 +21,7 @@ class Loop():
         print("1) List online users")
         print("2) Send a message")
         print("3) Sign off")
+
     def Run(self):
         while True:
             readers, _, _ = select.select(self.readers, [], [])
