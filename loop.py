@@ -23,6 +23,8 @@ class Loop():
         print("3) Sign off")
 
     def Run(self):
+        # Utilize select to listen for server response
+        # and user input
         while True:
             readers, _, _ = select.select(self.readers, [], [])
             for reader in readers:

@@ -31,11 +31,13 @@ class Client:
         return self.s.fileno()
 
     def Init_Connection(self):
+        # Handshake with UVMPM server
         data = "HELLO\n".encode("utf-8")
         self.s.send(data)
         self.Read_Data()
 
     def Authenticate(self):
+        # Authenticate user
         print("Please enter your credentials")
         u_name = input("Username: ")
         pwd = input("Password: ")
@@ -44,6 +46,7 @@ class Client:
         self.Read_Data()
 
     def Read_Data(self):
+        # Parse input according to UVMPM protocol
         response = str(self.s.recv(1024), "utf-8")
         response = response.rstrip()
         if response == "HELLO" and not self.initialized:
@@ -83,6 +86,7 @@ class Client:
         print("\n")
 
     def Send_Data(self):
+        # Send data in accordance with the UVMPM protocol
         data = sys.stdin.readline()
         good_input = False
         if data == "1\n":
@@ -105,6 +109,7 @@ class Client:
             self.s.send(data)
 
     def Close_Connection(self):
+        # Log out user and close connection
         data = "BYE\n".encode("utf-8")
         self.s.send(data)
         self.Read_Data()

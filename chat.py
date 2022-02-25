@@ -3,6 +3,23 @@ from loop import Loop
 from u_input import Input
 
 """
+---------------CHAT-----------------------
+This program connects to the UVM domain
+utilizing the UVMPM protocol
+
+Author: 
+
+    Olin Ruppert-Bousquet
+
+Directions:
+    1) Enter server address
+    2) Enter port number
+    3) Enter username (test1,....,test10)
+    4) Enter password (p001)
+    5) Choose from the available options
+        and following prompts.
+    
+
 Program creates connection to server using
 client object. Client object and u_input
 object added to loop object for continuous 
