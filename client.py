@@ -53,7 +53,9 @@ class Client:
             self.initialized = True
             print("\nConnection Initialized")
         elif response == "":
-            self.Close_Connection()
+            print("Server has disconnected")
+            print("Exiting...")
+            exit()
         elif response[:7] == "SIGNIN:":
             print("--------------------")
             print("User login:  {}".format(response.rstrip()[7:]))
