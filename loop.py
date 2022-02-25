@@ -28,6 +28,9 @@ class Loop():
         while True:
             readers, _, _ = select.select(self.readers, [], [])
             for reader in readers:
+                if reader == "":
+                    print("Connection to server closed")
+                    exit()
                 reader.Read_Data()
                 self.Menu()
 
