@@ -22,7 +22,7 @@ class Client:
         try:
             self.s.connect((self.HOST, self.PORT))
         except OSError:
-            print("Invalid port/server address entered")
+            print("The specified port/server address is not available")
             print("Closing...")
             exit()
         self.Init_Connection()
