@@ -52,6 +52,8 @@ class Client:
         if response == "HELLO" and not self.initialized:
             self.initialized = True
             print("\nConnection Initialized")
+        elif response == "":
+            self.Close_Connection()
         elif response[:7] == "SIGNIN:":
             print("--------------------")
             print("User login:  {}".format(response.rstrip()[7:]))
