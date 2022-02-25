@@ -19,7 +19,12 @@ class Client:
         self.HOST = HOST
         self.PORT = PORT
         self.s = socket.socket()
-        self.s.connect((self.HOST, self.PORT))
+        try:
+            self.s.connect((self.HOST, self.PORT))
+        except OSError:
+            print("Invalid port/server address entered")
+            print("Closing...")
+            exit()
         self.Init_Connection()
 
     def fileno(self):
